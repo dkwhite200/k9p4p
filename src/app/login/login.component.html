@@ -1,20 +1,22 @@
-<ngb-tabset type="pills">
-  <ngb-tab>
-    <ng-template ngbTabTitle>
-      <b>Login</b>
-    </ng-template>
-    <ng-template ngbTabContent>
-      <div class="jumbotron container">
-        <div>
-          <h1>
-            Login
-          </h1>
-          <div class="btn-group">
-            <button class="btn btn-primary">Sign In</button>
-            <button class="btn btn-primary">Sign Up</button>
-          </div>
+<div class="jumbotron container col-8">
+  <div>
+    <h1>
+      Login
+    </h1>
+    <form name="UserLogin" class="signin" novalidate autocomplete="off">
+      <fieldset>
+        <div class="form-group" show-errors>
+          <input type="text" class="form-control" #username (keyup.enter)="0" placeholder="username" required/>
         </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <input type="password" class="form-control" #password (keyup.enter)="0" placeholder="password" password-validator required/>
+        </div>
+      </fieldset>
+      <div class="btn-group">
+        <button class="btn btn-primary">Sign In</button>
       </div>
-    </ng-template>
-  </ngb-tab>
-</ngb-tabset>
+    </form>
+  </div>
+</div>
