@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+
 import { AppComponent } from './app.component';
 import { ItemComponent } from './item/item.component';
 import { ClientComponent } from './client/client.component';
@@ -23,6 +28,9 @@ import { AppRoutingModule } from './/app-routing.module';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpModule,
+    AngularFireModule.initializeApp(environment),
     NgbModule.forRoot(),
     AppRoutingModule
   ],
