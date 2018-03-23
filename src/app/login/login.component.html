@@ -3,20 +3,25 @@
     <h1>
       Login
     </h1>
-    <form name="UserLogin" class="signin" novalidate autocomplete="off">
+    <form #formData="ngForm" (submit)="login(formData)" name="UserLogin" class="signin" autocomplete="off">
       <fieldset>
-        <div class="form-group" show-errors>
-          <input type="text" class="form-control" #username (keyup.enter)="0" placeholder="username" required/>
+        <div class="form-group">
+          <input type="text" class="form-control" [(ngModel)]="email" (keyup.enter)="login(formData)" name="email" placeholder="email" required/>
         </div>
       </fieldset>
       <fieldset>
-        <div class="form-group" show-errors>
-          <input type="password" class="form-control" #password (keyup.enter)="0" placeholder="password" password-validator required/>
+        <div class="form-group">
+          <input type="password" class="form-control" [(ngModel)]="password" (keyup.enter)="login(formData)" name="password" placeholder="password" required/>
         </div>
       </fieldset>
       <div class="btn-group">
-        <button class="btn btn-primary">Sign In</button>
+        <button type="submit" [disabled]="!formData.valid" class="btn btn-primary">Sign In</button>
       </div>
     </form>
+    <div *ngIf="errBool">
+      <ngb-alert [dismissible]="false">
+        <strong>Login Error!</strong> {{errMsg}}
+      </ngb-alert>
+    </div>
   </div>
 </div>
