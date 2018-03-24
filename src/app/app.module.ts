@@ -19,6 +19,9 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
+import { EditItemComponent } from './item/edit-item/edit-item.component';
+import { CreateClientComponent } from './client/create-client/create-client.component';
+import { EditClientComponent } from './client/edit-client/edit-client.component';
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import { AuthGuard } from './auth/auth.guard';
     ClientComponent,
     UserComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    EditItemComponent,
+    CreateClientComponent,
+    EditClientComponent,
   ],
   imports: [
     BrowserModule,
