@@ -22,6 +22,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { EditItemComponent } from './item/edit-item/edit-item.component';
 import { CreateClientComponent } from './client/create-client/create-client.component';
 import { EditClientComponent } from './client/edit-client/edit-client.component';
+import { DetailItemComponent } from './item/detail-item/detail-item.component';
+import { DetailClientComponent } from './client/detail-client/detail-client.component';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import { EditClientComponent } from './client/edit-client/edit-client.component'
     EditItemComponent,
     CreateClientComponent,
     EditClientComponent,
+    DetailItemComponent,
+    DetailClientComponent,
   ],
   imports: [
     BrowserModule,
