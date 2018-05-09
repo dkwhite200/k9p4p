@@ -1,3 +1,46 @@
-<p>
-  detail-item works!
-</p>
+<section>
+  <div class="jumbotron container">
+    <div>
+      <h1>
+        {{item.name}} Details
+      </h1>
+      <div class="btn-group">
+        <button class="btn btn-success" (click)="openModal()">Edit Item</button>
+        <button class="btn btn-primary" (click)="goBack()">Back</button>
+      </div>
+      <button class="btn btn-danger" (click)="deleteItem()">Delete</button>
+    </div>
+  </div>
+  <div class="tablewrapper">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-default">
+        <tr>
+          <th>Feild</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Name</td>
+          <td>{{item.name}}</td>
+        </tr>
+        <tr>
+          <td>UPC</td>
+          <td>{{item.upc}}</td>
+        </tr>
+        <tr>
+          <td>Quantity</td>
+          <td>{{item.qty}}</td>
+        </tr>
+        <tr>
+          <td>Created</td>
+          <td>{{item.created | date: 'short'}}</td>
+        </tr>
+        <tr>
+          <td>Last Updated</td>
+          <td>{{item.updated | date: 'short'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

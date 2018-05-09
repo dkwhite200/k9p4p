@@ -1,3 +1,25 @@
-<p>
-  edit-item works!
-</p>
+<div class="modal-header">
+  <h4 class="modal-title">Edit Item</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container">
+    <form (ngSubmit)="onSubmit()" #editItemForm="ngForm">
+      <div class="form-group">
+        <label for="name"><strong>Name</strong></label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="formData.name" required>
+      </div>
+      <div class="form-group">
+        <label for="upc"><strong>UPC</strong></label>
+        <input type="text" class="form-control" id="upc" name="upc" [(ngModel)]="formData.upc" required>
+      </div>
+      <div class="form-group">
+        <label for="qty"><strong>Quantity</strong></label>
+        <input type="text" class="form-control" id="qty" name="quantity" [(ngModel)]="formData.qty" required>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!editItemForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Close</button>
+    </form>
+  </div>
