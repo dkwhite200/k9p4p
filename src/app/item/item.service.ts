@@ -19,15 +19,15 @@ export class ItemService {
 
   constructor (private afs: AngularFirestore, private route: Router) { 
     
-    //Get Item list form firestore
+    //Get Item list from firestore
     this.itemsCollection = this.afs.collection('items');
     this.items = this.itemsCollection.valueChanges();
   }
 
   //add an item to a collection
+  //TODO: try and see if there is a way to grab doc obj w/o doc.id
+  //if not make this function add id to item obj
   addItem (item: Item) {
-    console.log(item.id);
-    item.updated = new Date();
     this.itemsCollection.add(item)
       .then((doc) => console.log('Item successfully added: ', doc.id))
       .catch((error) => console.error('Error adding item: ', error));
@@ -37,9 +37,8 @@ export class ItemService {
 
   //update item in database
   updateItem (item: Item) {
-    console.log(item.id);
     item.updated = new Date();
-    this.itemsCollection.doc(item.id).update(item)
+    this.itemsCollection.doc(item.upc).update(item)
       .then((doc) => console.log('Item successfully updated'))
       .catch((error) => console.log('Error updating item: ', error));
     this.updateItems();
@@ -47,8 +46,7 @@ export class ItemService {
 
   //delete an item in databae
   deleteItem (item: Item) {
-    console.log(item.id);
-    this.itemsCollection.doc(item.id).delete()
+    this.itemsCollection.doc(item.upc).delete()
       .then((doc) => console.log('Item successfully deleted: ', doc))
       .catch((error) => console.log('Error deleting item: ', error));
     this.updateItems();

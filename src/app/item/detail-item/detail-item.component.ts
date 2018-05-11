@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EditItemComponent } from '../edit-item/edit-item.component';
 import { ItemService } from '../item.service';
 import { Item } from '../item';
+import { EditItemComponent } from '../edit-item/edit-item.component';
 
 @Component({
   selector: 'app-detail-item',
@@ -11,6 +11,7 @@ import { Item } from '../item';
   styleUrls: ['./detail-item.component.css']
 })
 export class DetailItemComponent implements OnInit { 
+  
   constructor (private modalService: NgbModal,
     private itemservice: ItemService,
     private page: ActivatedRoute,
@@ -34,7 +35,7 @@ export class DetailItemComponent implements OnInit {
   }
 
   //opens the edit view and inputs item data and a formData obj (see edit-item.component.js for formData usage)
-  openModal () {
+  openEdit () {
     const modalRef = this.modalService.open(EditItemComponent);
     modalRef.componentInstance.item = this.item;
     modalRef.componentInstance.formData = this.copyItem(this.item);
@@ -49,7 +50,6 @@ export class DetailItemComponent implements OnInit {
   copyItem (item: Item): Item {
     var copy: Item;
     copy = {
-      id: item.id,
       name: item.name,
       upc: item.upc,
       qty: item.qty,
