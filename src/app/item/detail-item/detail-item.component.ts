@@ -19,6 +19,7 @@ export class DetailItemComponent implements OnInit {
 
   item: Item;
 
+  //TODO: find a way to make the page load after retrieving the data from database
   ngOnInit () {
     this.getItem();
   }
@@ -50,6 +51,7 @@ export class DetailItemComponent implements OnInit {
   copyItem (item: Item): Item {
     var copy: Item;
     copy = {
+      id: item.id,
       name: item.name,
       upc: item.upc,
       qty: item.qty,

@@ -15,6 +15,7 @@ export class CreateItemComponent {
   
   //create template item
   item: Item = {
+    id: '',
     name: '',
     upc: '',
     qty: 0,

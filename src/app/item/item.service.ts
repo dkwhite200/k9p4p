@@ -25,30 +25,39 @@ export class ItemService {
   }
 
   //add an item to a collection
-  //TODO: try and see if there is a way to grab doc obj w/o doc.id
-  //if not make this function add id to item obj
   addItem (item: Item) {
+    //add item to collection with a missing id attribute
     this.itemsCollection.add(item)
-      .then((doc) => console.log('Item successfully added: ', doc.id))
-      .catch((error) => console.error('Error adding item: ', error));
-    //auto update item list
+      .then((doc) => {
+        //retrieve database id and set to item id
+        item.id = doc.id;
+        //update the database document
+        doc.update(item)
+          .then(() => console.log('Item successfully created'))
+          .catch((error) => console.log('Error adding id to new item: ', error));
+      })
+      .catch((error) => console.log('Error in adding item: ', error));
+    //auto update list of items
     this.updateItems();
   }
 
   //update item in database
   updateItem (item: Item) {
+    //reset the last updated time
     item.updated = new Date();
-    this.itemsCollection.doc(item.upc).update(item)
-      .then((doc) => console.log('Item successfully updated'))
+    this.itemsCollection.doc(item.id).update(item)
+      .then(() => console.log('Item successfully updated'))
       .catch((error) => console.log('Error updating item: ', error));
+    //auto update list of items
     this.updateItems();
   }
 
   //delete an item in databae
   deleteItem (item: Item) {
-    this.itemsCollection.doc(item.upc).delete()
+    this.itemsCollection.doc(item.id).delete()
       .then((doc) => console.log('Item successfully deleted: ', doc))
       .catch((error) => console.log('Error deleting item: ', error));
+    //auto update list of items
     this.updateItems();
   }
 
