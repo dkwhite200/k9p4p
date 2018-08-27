@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ItemService } from './item.service';
+import { Item } from './item';
+import { CreateItemComponent } from './create-item/create-item.component';
 
 @Component({
   selector: 'app-item',
@@ -7,9 +12,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemComponent implements OnInit {
 
-  constructor() { }
+  constructor (private modalService: NgbModal, private itemservice: ItemService, private route: Router) { }
 
-  ngOnInit() {
+  items: Item[];
+  
+  //get items upon page navigation
+  ngOnInit () {
+    this.itemservice.getItemList()
+      .subscribe((items) => this.items = items);
+  }
+
+  //go to details url of the specific item
+  goDetials (item: Item) {
+    this.route.navigate([`detail-item/${item.id}`]);
+  }
+
+  //opens a modal to create an item
+  openCreate () {
+    const modalRef = this.modalService.open(CreateItemComponent);
   }
 
 }

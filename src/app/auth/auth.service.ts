@@ -22,7 +22,7 @@ export class AuthService {
 
   constructor (private afAuth: AngularFireAuth, private afs: AngularFirestore, private route: Router) {
     
-    //// Get auth data, then get firestore user document || null
+    // Get auth data, then get firestore user observable|| null
     this.user = this.afAuth.authState
       .switchMap(user => {
         if (user) {
@@ -33,19 +33,20 @@ export class AuthService {
       });
    }
 
-  //// Email/Password Auth ////
+  //sign up using email and password
   signUp (email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
-        return this.updateUserData(user); // if using firestore
+        return this.updateUserData(user); // sends to local user data "User" TODO: Remove?
       })
       .catch((error) => this.handleError(error));
   }
 
+  //TODO: look here, we don't want to update user data just the authstate
   login (email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
-        return this.updateUserData(user); // if using firestore
+        return this.updateUserData(user); // sends to local user data "User"
       })
       .catch((error) => this.handleError(error));
   }
@@ -54,12 +55,14 @@ export class AuthService {
   resetPassword (email: string) {
     const fbAuth = firebase.auth();
 
+    //TODO: this may need working on (idk if sendpasswordreset will update the data in database)
     return fbAuth.sendPasswordResetEmail(email)
       .catch((error) => this.handleError(error));
   }
 
   logout () {
     this.afAuth.auth.signOut().then(() => {
+      //TODO: this may need beefing (change authstate or something)
       this.route.navigate(['login']);
     });
   }
@@ -72,14 +75,17 @@ export class AuthService {
   // Sets user data to firestore after succesful login
   private updateUserData (user: User) {
 
+    //the doc of the user pulled by user id
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
 
+    //data constructor
     const data: User = {
       uid: user.uid,
       email: user.email || null,
       userRole: user.userRole || null,
       name: user.name || null
     };
+    //set data in database
     return userRef.set(data);
   }
 }

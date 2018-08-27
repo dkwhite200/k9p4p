@@ -12,13 +12,15 @@ export class AuthGuard implements CanActivate {
 
   constructor(private auth: AuthService, private route: Router){}
 
-  canActivate(
+  canActivate (
+    //idk what these 2 do
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | boolean {
     return this.auth.user
       .take(1)
       .map(user => !!user)
       .do(loggedIn => {
+        //if not logged in goto login page
         if (!loggedIn) {
           console.log('access denied')
           this.route.navigate(['login']);
