@@ -23,7 +23,7 @@ export class ItemComponent implements OnInit {
   }
 
   //go to details url of the specific item
-  goDetials (item: Item) {
+  goDetails (item: Item) {
     this.route.navigate([`detail-item/${item.id}`]);
   }
 

@@ -1,3 +1,46 @@
-<p>
-  detail-client works!
-</p>
+<section>
+  <div class="jumbotron container">
+    <div>
+      <h1>
+        {{client.name}}'s Details
+      </h1>
+      <div class="btn-group">
+        <button class="btn btn-success" (click)="openEdit()">Edit Client</button>
+        <button class="btn btn-primary" (click)="goBack()">Back</button>
+      </div>
+      <button class="btn btn-danger" (click)="deleteClient()">Delete</button>
+    </div>
+  </div>
+  <div class="tablewrapper">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-default">
+        <tr>
+          <th>Feild</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Name</td>
+          <td>{{client.name}}</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>{{client.email}}</td>
+        </tr>
+        <tr>
+          <td>Dog Name</td>
+          <td>{{client.dog_name}}</td>
+        </tr>
+        <tr>
+          <td>Created</td>
+          <td>{{client.created | date: 'short'}}</td>
+        </tr>
+        <tr>
+          <td>Last Updated</td>
+          <td>{{client.updated | date: 'short'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
