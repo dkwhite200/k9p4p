@@ -1,9 +1,9 @@
 //Item Interface
-export interface Item {
+export interface Client {
     id: string;
     name: string;
-    upc: string;
-    qty: number;
+    email: string;
+    dog_name: string;
     created: Date;
     updated: Date;
 }

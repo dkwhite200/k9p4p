@@ -5,7 +5,7 @@
         Client List
       </h1>
       <div class="btn-group">
-        <button class="btn btn-success">Create Client</button>
+        <button class="btn btn-success" (click)="this.openCreate()">Create Client</button>
         <button class="btn btn-primary">Print List</button>
       </div>
     </div>
@@ -21,23 +21,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>name1</td>
-          <td>Email1</td>
-          <td>1</td>
-          <td>1:00am</td>
-        </tr>
-        <tr>
-          <td>name2</td>
-          <td>Email2</td>
-          <td>2</td>
-          <td>2:00am</td>
-        </tr>
-        <tr>
-          <td>name3</td>
-          <td>Email3</td>
-          <td>3</td>
-          <td>3:00am</td>
+        <tr *ngFor="let client of this.clients" (click)="this.goDetails(client)">
+          <td>{{client.name}}</td>
+          <td>{{client.email}}</td>
+          <td>{{client.dog_name}}</td>
+          <td>{{client.updated | date: 'short'}}</td>
         </tr>
       </tbody>
     </table>

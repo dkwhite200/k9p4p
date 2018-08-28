@@ -30,6 +30,7 @@ import { EditClientComponent } from './client/edit-client/edit-client.component'
 import { DetailItemComponent } from './item/detail-item/detail-item.component';
 import { DetailClientComponent } from './client/detail-client/detail-client.component';
 import { ItemService } from './item/item.service';
+import { ClientService } from './client/client.service';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { ItemService } from './item/item.service';
   providers: [
     AuthService,
     AuthGuard,
-    ItemService
+    ItemService,
+    ClientService
   ],
   //this defines our initial component (top tier component)
   bootstrap: [AppComponent]

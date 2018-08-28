@@ -19,7 +19,6 @@ export class DetailItemComponent implements OnInit {
 
   item: Item;
 
-  //TODO: find a way to make the page load after retrieving the data from database
   ngOnInit () {
     this.getItem();
   }
